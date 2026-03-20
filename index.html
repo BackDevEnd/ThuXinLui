@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời xin lỗi từ Quân</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div id="login-screen" class="container">
+        <div class="card">
+            <h2>Nhập tên người anh yêu nhất ❤️</h2>
+            <input type="text" id="nameInput" placeholder="Nhập tên ở đây...">
+            <button onclick="checkName()">Mở thư</button>
+            <p id="error-msg" style="display:none; color: #ff4d6d; margin-top: 10px;">Ơ kìa, không phải tên này rồi!</p>
+        </div>
+    </div>
+
+    <div id="letter-screen" class="container" style="display: none;">
+        <div class="card letter">
+            <h2>Gửi Linh - My love</h2>
+            <div class="content">
+                <p>Anh xin lỗi em, đã làm em phải buồn lòng</p>
+                <p>Em có thích hoa không ?</p>
+            </div>
+            
+            <hr>
+            <h3>Bé tha lỗi cho anh nhá ?</h3>
+            <div class="btn-group">
+                <button id="yesBtn" onclick="accept()">Đồng ý ❤️</button>
+                <button id="noBtn" onmouseover="moveButton()">Không 💔</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkName() {
+            // Lấy giá trị, xóa khoảng trắng và chuyển về chữ thường
+            const name = document.getElementById('nameInput').value.trim().toLowerCase();
+            const error = document.getElementById('error-msg');
+            const loginScreen = document.getElementById('login-screen');
+            const letterScreen = document.getElementById('letter-screen');
+
+            // Kiểm tra tên
+            if (name === "nguyễn thùy linh" || name === "nguyen thuy linh" || name === "linh") {
+                loginScreen.style.display = 'none';
+                letterScreen.style.display = 'flex';
+                error.style.display = 'none'; // Ẩn lỗi nếu trước đó nhập sai
+            } else {
+                error.style.display = 'block';
+                document.getElementById('nameInput').style.borderColor = "red";
+            }
+        }
+
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            // Tính toán vị trí ngẫu nhiên để nút nhảy đi
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'fixed'; // Dùng fixed để nó nhảy khắp màn hình
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function accept() {
+            alert("Cảm ơn bé đã tha lỗi cho anh! Anh yêu em rất nhiều ❤️");
+            window.location.href = "flower.html"; 
+        }
+    </script>
+</body>
+</html>
